@@ -32,3 +32,13 @@ test("increment the count", () => {
 
   expect(count).toHaveTextContent("1");
 });
+
+test("decrement the count", () => {
+  const { getByText, getByTestId } = render(<App />);
+
+  expect(getByTestId("count")).toHaveTextContent("0");
+
+  fireEvent.click(getByText("-"));
+
+  expect(getByTestId("count")).toHaveTextContent("-1");
+});

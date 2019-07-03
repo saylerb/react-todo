@@ -12,6 +12,7 @@ function App() {
         <p className="greeting">Hello, World!</p>
         <div data-testid="count">{count}</div>
         <button onClick={() => setCount(count + 1)}>+</button>
+        <button onClick={() => setCount(count - 1)}>-</button>
       </header>
     </div>
   );
