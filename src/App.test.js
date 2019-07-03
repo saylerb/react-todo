@@ -5,14 +5,6 @@ import { render, cleanup, fireEvent } from "@testing-library/react";
 
 afterEach(cleanup);
 
-test("renders without crashing", () => {
-  const { getByText } = render(<App />);
-
-  const text = getByText("Hello, World!");
-
-  expect(text).toHaveClass("greeting");
-});
-
 test("it displays one by default", () => {
   const { getByTestId } = render(<App />);
 
