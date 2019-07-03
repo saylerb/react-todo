@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
-import { render, cleanup } from "@testing-library/react";
+import { render, cleanup, fireEvent } from "@testing-library/react";
 
 afterEach(cleanup);
 
@@ -19,4 +19,16 @@ test("it displays one by default", () => {
   const count = getByTestId("count");
 
   expect(count).toHaveTextContent("0");
+});
+
+test("increment the count", () => {
+  const { getByText, getByTestId } = render(<App />);
+
+  const button = getByText("+");
+
+  fireEvent.click(button);
+
+  const count = getByTestId("count");
+
+  expect(count).toHaveTextContent("1");
 });
