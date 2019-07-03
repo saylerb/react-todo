@@ -17,6 +17,9 @@ function App() {
         <button className="button" onClick={() => setCount(count - 1)}>
           -
         </button>
+        <button className="button reset" onClick={() => setCount(0)}>
+          ⟲
+        </button>
       </div>
     </div>
   );

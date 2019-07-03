@@ -34,3 +34,16 @@ test("decrement the count", () => {
 
   expect(getByTestId("count")).toHaveTextContent("-1");
 });
+
+test("reset the count", () => {
+  const { getByText, getByTestId } = render(<App />);
+  const button = getByText("+");
+  fireEvent.click(button);
+  fireEvent.click(button);
+
+  expect(getByTestId("count")).toHaveTextContent("2");
+
+  fireEvent.click(getByText("⟲"));
+
+  expect(getByTestId("count")).toHaveTextContent("0");
+});
