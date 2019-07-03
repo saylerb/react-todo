@@ -12,3 +12,11 @@ test("renders without crashing", () => {
 
   expect(text).toHaveClass("greeting");
 });
+
+test("it displays one by default", () => {
+  const { getByTestId } = render(<App />);
+
+  const count = getByTestId("count");
+
+  expect(count).toHaveTextContent("0");
+});
