@@ -4,7 +4,7 @@ import { increment, decrement, reset } from "./actions";
 test("default state to count of zero", () => {
   const initialState = undefined;
 
-  const result = count(initialState);
+  const result = count(initialState, { type: "NOT_AN_ACTION" });
 
   expect(result).toEqual(0);
 });
