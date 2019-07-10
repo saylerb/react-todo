@@ -11,11 +11,16 @@ test("default state to a list of empty todos", () => {
 });
 
 test("adding a todo", () => {
-  const initialState = { todos: [] };
+  const initialState = { todos: [{ title: "First Todo", completed: false }] };
 
-  const result = todoApp(initialState, addTodo("Todo"));
+  const result = todoApp(initialState, addTodo("Second Todo"));
 
-  expect(result).toEqual({ todos: [{ title: "Todo", completed: false }] });
+  expect(result).toEqual({
+    todos: [
+      { title: "First Todo", completed: false },
+      { title: "Second Todo", completed: false }
+    ]
+  });
 });
 
 test("toggle a todo", () => {

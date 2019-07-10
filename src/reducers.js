@@ -8,7 +8,7 @@ export function todoApp(state = initialState, action) {
   switch (action.type) {
     case TODO_ADDED:
       return Object.assign({}, state, {
-        todos: [{ title: action.title, completed: false }]
+        todos: [...state.todos, { title: action.title, completed: false }]
       });
     case TODO_TOGGLED:
       return Object.assign({}, state, {
