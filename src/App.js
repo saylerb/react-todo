@@ -1,39 +1,27 @@
 import React from "react";
 import "./App.css";
 import { connect } from "react-redux";
-import { increment, decrement, reset } from "./actions";
 
-function App({ count, increment, decrement, reset }) {
+function App({ todos }) {
   return (
     <div className="App">
       <div className="container">
-        <div className="count-display" data-testid="count">
-          {count}
-        </div>
-        <button className="button" onClick={increment}>
-          +
-        </button>
-        <button className="button" onClick={decrement}>
-          -
-        </button>
-        <button className="button reset" onClick={reset}>
-          ⟲
-        </button>
+        <ul data-testid="todos">
+          {todos.map(({ title }) => {
+            return <li key={title}>{title}</li>;
+          })}
+        </ul>
       </div>
     </div>
   );
 }
 
 const mapDispatchToProps = dispatch => {
-  return {
-    increment: () => dispatch(increment()),
-    decrement: () => dispatch(decrement()),
-    reset: () => dispatch(reset())
-  };
+  return {};
 };
 
 const mapStateToProps = state => {
-  return { count: state };
+  return state;
 };
 
 const connectedApp = connect(

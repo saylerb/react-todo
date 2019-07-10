@@ -6,9 +6,11 @@ import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 
 import { createStore } from "redux";
-import { count } from "./reducers";
+import { todoApp } from "./reducers";
+import { addTodo } from "./actions";
 
-const store = createStore(count);
+const store = createStore(todoApp);
+store.dispatch(addTodo("First Todo"));
 
 ReactDOM.render(
   <Provider store={store}>

@@ -5,26 +5,29 @@ import { render, cleanup, fireEvent } from "@testing-library/react";
 import { Provider } from "react-redux";
 
 import { createStore } from "redux";
-import { count } from "./reducers";
+import { todoApp } from "./reducers";
+import { addTodo } from "./actions";
 
 let store;
 
 beforeEach(() => {
-  store = createStore(count);
+  store = createStore(todoApp);
 });
 
 afterEach(cleanup);
 
-test.skip("it displays one by default", () => {
+test("it displays existing todos", () => {
+  store.dispatch(addTodo("Clean Kitchen"));
+
   const { getByTestId } = render(
     <Provider store={store}>
       <App />
     </Provider>
   );
 
-  const count = getByTestId("count");
+  const count = getByTestId("todos");
 
-  expect(count).toHaveTextContent("0");
+  expect(count).toHaveTextContent("Clean Kitchen");
 });
 
 test.skip("increment the count", () => {
