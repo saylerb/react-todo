@@ -1,7 +1,6 @@
 import React from "react";
-import ReactDOM from "react-dom";
 import App from "./App";
-import { render, cleanup, fireEvent } from "@testing-library/react";
+import { render, cleanup } from "@testing-library/react";
 import { Provider } from "react-redux";
 
 import { createStore } from "redux";
@@ -47,35 +46,4 @@ test("displays completed state when todo is completed", () => {
   const html = `<li class="completed">Clean Kitchen</li>`;
 
   expect(todosList).toContainHTML(html);
-});
-
-test.skip("decrement the count", () => {
-  const { getByText, getByTestId } = render(
-    <Provider store={store}>
-      <App />
-    </Provider>
-  );
-
-  expect(getByTestId("count")).toHaveTextContent("0");
-
-  fireEvent.click(getByText("-"));
-
-  expect(getByTestId("count")).toHaveTextContent("-1");
-});
-
-test.skip("reset the count", () => {
-  const { getByText, getByTestId } = render(
-    <Provider store={store}>
-      <App />
-    </Provider>
-  );
-  const button = getByText("+");
-  fireEvent.click(button);
-  fireEvent.click(button);
-
-  expect(getByTestId("count")).toHaveTextContent("2");
-
-  fireEvent.click(getByText("⟲"));
-
-  expect(getByTestId("count")).toHaveTextContent("0");
 });
