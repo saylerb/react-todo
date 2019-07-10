@@ -1,5 +1,5 @@
 export const TODO_ADDED = "TODO_ADDED";
-const TODO_REMOVED = "TODO_REMOVED";
+export const TODO_TOGGLED = "TODO_TOGGLED";
 
 export function addTodo(title) {
   return {
@@ -8,8 +8,9 @@ export function addTodo(title) {
   };
 }
 
-export function removeTodo() {
+export function toggleTodo(title) {
   return {
-    type: TODO_REMOVED
+    type: TODO_TOGGLED,
+    title
   };
 }

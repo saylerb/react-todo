@@ -1,5 +1,5 @@
 import { todoApp } from "./reducers";
-import { addTodo } from "./actions";
+import { addTodo, toggleTodo } from "./actions";
 
 test("default state to a list of empty todos", () => {
   const initialState = undefined;
@@ -16,4 +16,16 @@ test("adding a todo", () => {
   const result = todoApp(initialState, addTodo("Todo"));
 
   expect(result).toEqual({ todos: [{ title: "Todo", completed: false }] });
+});
+
+test("toggle a todo", () => {
+  const initialState = {
+    todos: [{ title: "Clean kitchen", completed: false }]
+  };
+
+  const result = todoApp(initialState, toggleTodo("Clean kitchen"));
+
+  expect(result).toEqual({
+    todos: [{ title: "Clean kitchen", completed: true }]
+  });
 });
