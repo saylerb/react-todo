@@ -9,7 +9,10 @@ import { createStore } from "redux";
 import { todoApp } from "./reducers";
 import { addTodo, toggleTodo } from "./actions";
 
-const store = createStore(todoApp);
+const store = createStore(
+  todoApp,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+);
 console.log("Initial State: ", store.getState());
 
 const unsubscribe = store.subscribe(() =>
