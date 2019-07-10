@@ -1,9 +1,10 @@
-const TODO_ADDED = "TODO_ADDED";
+export const TODO_ADDED = "TODO_ADDED";
 const TODO_REMOVED = "TODO_REMOVED";
 
-export function addTodo() {
+export function addTodo(title) {
   return {
-    type: TODO_ADDED
+    type: TODO_ADDED,
+    title
   };
 }
 
