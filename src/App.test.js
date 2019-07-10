@@ -15,7 +15,7 @@ beforeEach(() => {
 
 afterEach(cleanup);
 
-test("it displays one by default", () => {
+test.skip("it displays one by default", () => {
   const { getByTestId } = render(
     <Provider store={store}>
       <App />
@@ -27,7 +27,7 @@ test("it displays one by default", () => {
   expect(count).toHaveTextContent("0");
 });
 
-test("increment the count", () => {
+test.skip("increment the count", () => {
   const { getByText, getByTestId } = render(
     <Provider store={store}>
       <App />
@@ -43,7 +43,7 @@ test("increment the count", () => {
   expect(count).toHaveTextContent("1");
 });
 
-test("decrement the count", () => {
+test.skip("decrement the count", () => {
   const { getByText, getByTestId } = render(
     <Provider store={store}>
       <App />
@@ -57,7 +57,7 @@ test("decrement the count", () => {
   expect(getByTestId("count")).toHaveTextContent("-1");
 });
 
-test("reset the count", () => {
+test.skip("reset the count", () => {
   const { getByText, getByTestId } = render(
     <Provider store={store}>
       <App />

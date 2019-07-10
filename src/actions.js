@@ -1,17 +1,14 @@
-export function increment() {
+const TODO_ADDED = "TODO_ADDED";
+const TODO_REMOVED = "TODO_REMOVED";
+
+export function addTodo() {
   return {
-    type: "INCREMENT"
+    type: TODO_ADDED
   };
 }
 
-export function decrement() {
+export function removeTodo() {
   return {
-    type: "DECREMENT"
-  };
-}
-
-export function reset() {
-  return {
-    type: "RESET"
+    type: TODO_REMOVED
   };
 }
