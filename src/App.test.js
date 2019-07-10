@@ -6,7 +6,7 @@ import { Provider } from "react-redux";
 
 import { createStore } from "redux";
 import { todoApp } from "./reducers";
-import { addTodo } from "./actions";
+import { addTodo, toggleTodo } from "./actions";
 
 let store;
 
@@ -25,25 +25,28 @@ test("it displays existing todos", () => {
     </Provider>
   );
 
-  const count = getByTestId("todos");
+  const todosList = getByTestId("todos");
 
-  expect(count).toHaveTextContent("Clean Kitchen");
+  expect(todosList).toHaveTextContent("Clean Kitchen");
+
+  const html = `<li>Clean Kitchen</li>`;
+  expect(todosList).toContainHTML(html);
 });
 
-test.skip("increment the count", () => {
-  const { getByText, getByTestId } = render(
+test("displays completed state when todo is completed", () => {
+  store.dispatch(addTodo("Clean Kitchen"));
+  store.dispatch(toggleTodo("Clean Kitchen"));
+
+  const { getByTestId } = render(
     <Provider store={store}>
       <App />
     </Provider>
   );
 
-  const button = getByText("+");
+  const todosList = getByTestId("todos");
+  const html = `<li class="completed">Clean Kitchen</li>`;
 
-  fireEvent.click(button);
-
-  const count = getByTestId("count");
-
-  expect(count).toHaveTextContent("1");
+  expect(todosList).toContainHTML(html);
 });
 
 test.skip("decrement the count", () => {

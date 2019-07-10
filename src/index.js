@@ -7,10 +7,14 @@ import * as serviceWorker from "./serviceWorker";
 
 import { createStore } from "redux";
 import { todoApp } from "./reducers";
-import { addTodo } from "./actions";
+import { addTodo, toggleTodo } from "./actions";
 
 const store = createStore(todoApp);
 store.dispatch(addTodo("First Todo"));
+store.dispatch(addTodo("Completed Todo"));
+store.dispatch(toggleTodo("Completed Todo"));
+
+console.log(store.getState());
 
 ReactDOM.render(
   <Provider store={store}>

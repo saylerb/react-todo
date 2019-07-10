@@ -7,8 +7,12 @@ function App({ todos }) {
     <div className="App">
       <div className="container">
         <ul data-testid="todos">
-          {todos.map(({ title }) => {
-            return <li key={title}>{title}</li>;
+          {todos.map(({ title, completed }) => {
+            return (
+              <li className={completed ? "completed" : null} key={title}>
+                {title}
+              </li>
+            );
           })}
         </ul>
       </div>
