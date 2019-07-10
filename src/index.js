@@ -10,11 +10,17 @@ import { todoApp } from "./reducers";
 import { addTodo, toggleTodo } from "./actions";
 
 const store = createStore(todoApp);
+console.log("Initial State: ", store.getState());
+
+const unsubscribe = store.subscribe(() =>
+  console.log("State Change:", store.getState())
+);
+
 store.dispatch(addTodo("First Todo"));
 store.dispatch(addTodo("Completed Todo"));
 store.dispatch(toggleTodo("Completed Todo"));
 
-console.log(store.getState());
+unsubscribe();
 
 ReactDOM.render(
   <Provider store={store}>
