@@ -18,15 +18,7 @@
   width: 400px;
 }
 
-.count-display {
-  font-size: 100px;
-  margin-bottom: 100px;
-}
-
 .button {
-  height: 100px;
-  width: 50%;
-  font-size: 40px;
   background: #d8d9db;
   display: inline-block;
   border: none;
@@ -42,25 +34,31 @@
   -moz-appearance: none;
 }
 
+form {
+  display: flex;
+}
+
+input {
+  padding: 0.5em;
+  font-size: 20px;
+}
+
+.full-width {
+  width: 100%;
+}
+
 .button:hover,
 .button:focus {
   background: #ebebeb;
 }
 
 .button:focus {
-  outline: 0;
   outline-offset: -4px;
 }
 
 .button:active {
   transform: scale(0.99);
   background: #bbbcbe;
-}
-
-.button:last-child {
-  background: #282c34;
-  color: #ebebeb;
-  border: solid #ebebeb 1px;
 }
 
 .button.reset {
