@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import "./App.css";
 import { connect } from "react-redux";
-import { addTodo } from "./actions";
+import { addTodo, toggleTodo } from "./actions";
 
-function App({ todos, addTodo }) {
+function App({ todos, addTodo, toggleTodo }) {
   const [title, setTitle] = useState("");
 
   return (
@@ -30,7 +30,11 @@ function App({ todos, addTodo }) {
         <ul data-testid="todos">
           {todos.map(({ title, completed }, index) => {
             return (
-              <li className={completed ? "completed" : null} key={index}>
+              <li
+                className={completed ? "completed" : null}
+                key={index}
+                onClick={event => toggleTodo(event.target.innerText)}
+              >
                 {title}
               </li>
             );
@@ -43,7 +47,8 @@ function App({ todos, addTodo }) {
 
 const mapDispatchToProps = dispatch => {
   return {
-    addTodo: title => dispatch(addTodo(title))
+    addTodo: title => dispatch(addTodo(title)),
+    toggleTodo: title => dispatch(toggleTodo(title))
   };
 };
 

@@ -1,6 +1,6 @@
 import React from "react";
 import App from "./App";
-import { render, cleanup, fireEvent } from "@testing-library/react";
+import { render, cleanup, fireEvent, wait } from "@testing-library/react";
 import { Provider } from "react-redux";
 
 import { createStore } from "redux";
@@ -48,7 +48,7 @@ test("displays completed state when todo is completed", () => {
   expect(todosList).toContainHTML(html);
 });
 
-test("can add a todo by typing into an input field", async () => {
+test("can add a todo by typing into an input field", () => {
   const { getByTestId, getByText } = render(
     <Provider store={store}>
       <App />
@@ -62,4 +62,26 @@ test("can add a todo by typing into an input field", async () => {
   fireEvent.click(getByText(/submit/i));
 
   expect(getByTestId("todos")).toHaveTextContent("New Test Todo");
+});
+
+test("toggle a todo state should cross it out", async () => {
+  store.dispatch(addTodo("Existing Todo"));
+
+  const { getByTestId, getByText } = render(
+    <Provider store={store}>
+      <App />
+    </Provider>
+  );
+
+  const existingTodoNode = getByTestId("todos").firstChild;
+
+  expect(existingTodoNode.innerHTML).toEqual("Existing Todo");
+  expect(existingTodoNode).not.toHaveClass("completed");
+
+  const element = getByText(/existing todo/i);
+
+  // innerText not implemented in jsdom, hack to make it work
+  fireEvent.click(element, { target: { innerText: "Existing Todo" } });
+
+  expect(existingTodoNode).toHaveClass("completed");
 });
