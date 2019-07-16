@@ -33,7 +33,7 @@ function App({ todos, addTodo, toggleTodo }) {
               <li
                 className={completed ? "completed" : null}
                 key={index}
-                onClick={event => toggleTodo(event.target.innerText)}
+                onClick={event => toggleTodo(title)}
               >
                 {title}
               </li>

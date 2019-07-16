@@ -80,8 +80,7 @@ test("toggle a todo state should cross it out", async () => {
 
   const element = getByText(/existing todo/i);
 
-  // innerText not implemented in jsdom, hack to make it work
-  fireEvent.click(element, { target: { innerText: "Existing Todo" } });
+  fireEvent.click(element);
 
   expect(existingTodoNode).toHaveClass("completed");
 });
