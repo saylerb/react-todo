@@ -1,6 +1,6 @@
 import React from "react";
 import App from "./App";
-import { render, cleanup, fireEvent, wait } from "@testing-library/react";
+import { render, cleanup, fireEvent, wait, getByLabelText } from "@testing-library/react";
 import { Provider } from "react-redux";
 
 import { createStore } from "redux";
@@ -49,18 +49,19 @@ test("displays completed state when todo is completed", () => {
 });
 
 test("can add a todo by typing into an input field", () => {
-  const { getByTestId, getByText } = render(
+  const { getByLabelText, getByTestId, getByText } = render(
     <Provider store={store}>
       <App />
     </Provider>
   );
 
-  const inputField = getByTestId("add-todo");
+  const inputField = getByLabelText(/add todo/i)
 
   fireEvent.change(inputField, { target: { value: "New Test Todo" } });
 
   fireEvent.click(getByText(/submit/i));
 
+  // TODO: remove todos test id
   expect(getByTestId("todos")).toHaveTextContent("New Test Todo");
 });
 

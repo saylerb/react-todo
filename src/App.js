@@ -16,18 +16,23 @@ function App({ todos, addTodo, toggleTodo }) {
             setTitle("");
           }}
         >
-          <input
-            className="full-width"
-            type="text"
-            value={title}
-            data-testid="add-todo"
-            onChange={event => setTitle(event.target.value)}
-          />
-          <button type="submit" className="button">
-            Submit
-          </button>
+          <label className="add-todo-input-label" htmlFor="add-todo-input">
+            Add Todo
+          </label>
+          <div className="row">
+            <input
+              id="add-todo-input"
+              className="add-todo-input"
+              type="text"
+              value={title}
+              onChange={event => setTitle(event.target.value)}
+            />
+            <button type="submit" className="button">
+              Submit
+            </button>
+          </div>
         </form>
-        <ul data-testid="todos">
+        <ul className="todos-list" data-testid="todos">
           {todos.map(({ title, completed }, index) => {
             return (
               <li

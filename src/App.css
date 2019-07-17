@@ -1,32 +1,38 @@
-.App {
-  text-align: center;
+body {
+  font-size: 16px;
   background-color: #282c34;
+}
+
+.App {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  font-size: 2rem;
   color: white;
 }
 
 .completed {
   text-decoration: line-through;
+  border: 1px solid red;
 }
 
 .container {
-  width: 400px;
+  width: 60%;
 }
 
 .button {
+  flex-grow: 0;
   background: #d8d9db;
   display: inline-block;
   border: none;
-  padding: 1rem 2rem;
+  padding: 2rem 3rem;
   margin: 0;
   text-decoration: none;
   color: black;
   font-family: sans-serif;
+  font-size: inherit;
   cursor: pointer;
   text-align: center;
   transition: background 250ms ease-in-out, transform 150ms ease;
@@ -36,15 +42,19 @@
 
 form {
   display: flex;
+  flex-flow: column nowrap;
 }
 
-input {
+.row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+}
+
+.add-todo-input {
   padding: 0.5em;
-  font-size: 20px;
-}
-
-.full-width {
-  width: 100%;
+  font-size: inherit;
+  flex-grow: 2;
 }
 
 .button:hover,
@@ -63,4 +73,23 @@ input {
 
 .button.reset {
   width: 100%;
+}
+
+.todos-list {
+  height: 50vh;
+  overflow-y: auto;
+  border: 1px solid grey;
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.todos-list>li {
+  min-height: 2rem;
+  padding: 1rem;
+  margin: 1rem;
+  border: 1px solid grey;
+}
+
+.todos-list>li.completed {
+  border: 1px solid red;
 }
