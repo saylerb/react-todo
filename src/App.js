@@ -21,6 +21,7 @@ function App({ todos, addTodo, toggleTodo }) {
           </label>
           <div className="row">
             <input
+              placeholder="clean kitchen counter"
               id="add-todo-input"
               className="add-todo-input"
               type="text"
@@ -32,19 +33,23 @@ function App({ todos, addTodo, toggleTodo }) {
             </button>
           </div>
         </form>
-        <ul className="todos-list" data-testid="todos">
-          {todos.map(({ title, completed }, index) => {
-            return (
-              <li
-                className={completed ? "completed" : null}
-                key={index}
-                onClick={event => toggleTodo(title)}
-              >
-                {title}
-              </li>
-            );
-          })}
-        </ul>
+
+        <section>
+          <h3 id="todos-header">All todos</h3>
+          <ul className="todos-list" aria-labelledby="todos-header">
+            {todos.map(({ title, completed }, index) => {
+              return (
+                <li
+                  className={completed ? "completed" : null}
+                  key={index}
+                  onClick={event => toggleTodo(title)}
+                >
+                  {title}
+                </li>
+              );
+            })}
+          </ul>
+        </section>
       </div>
     </div>
   );
