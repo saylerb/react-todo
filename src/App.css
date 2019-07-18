@@ -83,13 +83,18 @@ form {
   padding-left: 0;
 }
 
-.todos-list>li {
+.todos-list > li {
   min-height: 2rem;
   padding: 1rem;
   margin: 1rem;
   border: 1px solid grey;
 }
 
-.todos-list>li.completed {
-  border: 1px solid red;
+.todos-list > li.completed {
+  background-color: #282c34;
+  color: #bbbcbe;
+}
+
+.todos-list > li {
+  background-color: #ffffff36;
 }
