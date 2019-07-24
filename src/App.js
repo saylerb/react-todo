@@ -3,7 +3,7 @@ import "./App.css";
 import { connect } from "react-redux";
 import { addTodo, toggleTodo } from "./actions";
 
-function App({ todos, addTodo, toggleTodo }) {
+function App({ todos, toggleTodo, dispatch }) {
   const [title, setTitle] = useState("");
 
   return (
@@ -12,7 +12,7 @@ function App({ todos, addTodo, toggleTodo }) {
         <form
           onSubmit={event => {
             event.preventDefault();
-            addTodo(title);
+            dispatch(addTodo(title));
             setTitle("");
           }}
         >
@@ -57,8 +57,8 @@ function App({ todos, addTodo, toggleTodo }) {
 
 const mapDispatchToProps = dispatch => {
   return {
-    addTodo: title => dispatch(addTodo(title)),
-    toggleTodo: title => dispatch(toggleTodo(title))
+    toggleTodo: title => dispatch(toggleTodo(title)),
+    dispatch
   };
 };
 
