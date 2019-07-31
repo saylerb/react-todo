@@ -34,7 +34,7 @@ function App({ todos, toggleTodo, dispatch }) {
           </div>
         </form>
 
-        <section>
+        <section className="todos-section">
           <h3 id="todos-header">All todos</h3>
           <ul className="todos-list" aria-labelledby="todos-header">
             {todos.map(({ title, completed }, index) => {
@@ -45,6 +45,7 @@ function App({ todos, toggleTodo, dispatch }) {
                   onClick={event => toggleTodo(title)}
                 >
                   {title}
+                  <button onClick={this.handleDeleteTodo}>X</button>
                 </li>
               );
             })}

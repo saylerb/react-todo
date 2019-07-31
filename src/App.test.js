@@ -33,25 +33,6 @@ test("it displays existing todos", () => {
   const todosList = getByLabelText(/all todos/i);
 
   expect(todosList).toHaveTextContent("Clean Kitchen");
-
-  const html = `<li>Clean Kitchen</li>`;
-  expect(todosList).toContainHTML(html);
-});
-
-test("displays completed state when todo is completed", () => {
-  store.dispatch(addTodo("Clean Kitchen"));
-  store.dispatch(toggleTodo("Clean Kitchen"));
-
-  const { getByLabelText } = render(
-    <Provider store={store}>
-      <App />
-    </Provider>
-  );
-
-  const todosList = getByLabelText(/all todos/i);
-  const html = `<li class="completed">Clean Kitchen</li>`;
-
-  expect(todosList).toContainHTML(html);
 });
 
 test("can add a todo by typing into an input field", () => {
@@ -82,7 +63,6 @@ test("toggle a todo state should cross it out", async () => {
 
   const existingTodoNode = getByLabelText(/all todos/i).firstChild;
 
-  expect(existingTodoNode.innerHTML).toEqual("Existing Todo");
   expect(existingTodoNode).not.toHaveClass("completed");
 
   const element = getByText(/existing todo/i);
@@ -90,4 +70,31 @@ test("toggle a todo state should cross it out", async () => {
   fireEvent.click(element);
 
   expect(existingTodoNode).toHaveClass("completed");
+});
+
+test.skip("deleting a todo should remove it from list", () => {
+  // given i have todo list with two items
+  // when i delete the first item
+  // then I will see the second item remaining
+
+  store.dispatch(addTodo("first todo"));
+  store.dispatch(addTodo("second todo"));
+
+  const { getByLabelText, getByText } = render(
+    <Provider store={store}>
+      <App />
+    </Provider>
+  );
+
+  const firstTodo = getByText("first todo");
+  const firstTodoDeleteBtn = firstTodo.getElementsByTagName("button")[0];
+
+  expect(firstTodoDeleteBtn).toHaveTextContent(/x/i);
+
+  fireEvent.click(firstTodoDeleteBtn);
+
+  const allTodos = getByLabelText(/all todos/i);
+
+  expect(allTodos).not.toHaveTextContent("first todo");
+  expect(allTodos).toHaveTextContent("second todo");
 });
