@@ -45,7 +45,13 @@ function App({ todos, toggleTodo, dispatch }) {
                   onClick={event => toggleTodo(title)}
                 >
                   {title}
-                  <button onClick={this.handleDeleteTodo}>X</button>
+                  <button
+                    onClick={e => {
+                      e.stopPropagation();
+                    }}
+                  >
+                    X
+                  </button>
                 </li>
               );
             })}

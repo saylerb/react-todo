@@ -22,7 +22,9 @@ beforeEach(() => {
 afterEach(cleanup);
 
 test("it displays existing todos", () => {
-  store.dispatch(addTodo("Clean Kitchen"));
+  // mock the initial data load
+  // wait for existing todos to be loaded
+  store.dispatch(addTodo("Clean Kitchen")); // add Clean Kitchen to repsonse to mock request
 
   const { getByLabelText } = render(
     <Provider store={store}>
@@ -47,6 +49,8 @@ test("can add a todo by typing into an input field", () => {
   fireEvent.change(inputField, { target: { value: "New Test Todo" } });
 
   fireEvent.click(getByText(/submit/i));
+
+  // avoid asserting on the implmeentation e.g. expect createTodoResource to be called
 
   // TODO: remove todos test id
   expect(getByLabelText("All todos")).toHaveTextContent("New Test Todo");
