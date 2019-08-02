@@ -12,11 +12,23 @@ import { createTodoResource } from "./resources";
 jest.mock("./resources");
 
 test("createTodo adds a todo when 200 ok", () => {
-  createTodoResource.mockImplementation(() => {
-    return Promise.resolve({ title: "do dishes" });
+  createTodoResource.mockImplementation(title => {
+    let blob = new Blob([JSON.stringify({ title }, null, 2)], {
+      type: "application/json"
+    });
+
+    return Promise.resolve(new Response(blob, { status: 200 }));
   });
 
   const title = "do dishes";
+
+  // return createTodoResource(title).then(response => {
+  //   expect(response.ok).toBe(true);
+
+  //   return response.json().then(payload => {
+  //     expect(payload).toEqual({ title: "do dishes" });
+  //   });
+  // });
 
   // if no itermiedate object
   // axiosget.mockImplemetation(() => Promise.resolve({ title: "something" }));
